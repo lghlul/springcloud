@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @EnableEurekaClient
-//@EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.lu"})
 @SpringBootApplication
 public class RibbonConsumerApplication {

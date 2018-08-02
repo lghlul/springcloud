@@ -1,11 +1,13 @@
 package com.lu.controller;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.logging.Logger;
 
@@ -18,15 +20,20 @@ import java.util.logging.Logger;
 @RestController
 public class HelloController {
 
-    private final Logger logger = Logger.getLogger(getClass().toString());
+    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(HelloController.class);
 
     @Autowired
-    private DiscoveryClient client;
+    RestTemplate restTemplate;
 
     @RequestMapping(value="/hello",method=RequestMethod.GET)
-    public String index(){
-        ServiceInstance instance = client.getLocalServiceInstance();
-        System.out.println("/hello,host:" + instance.getHost() + ",service_id:" + instance.getServiceId());
+    public String hello(){
+        logger.info("hello start...");
         return "Hello World";
     }
+    @RequestMapping(value="/helloWorld",method=RequestMethod.GET)
+    public String helloWorld(){
+        logger.info("helloWorld start...");
+        return restTemplate.getForEntity("http://ribbon-service/hello",String.class).getBody();
+    }
+
 }
