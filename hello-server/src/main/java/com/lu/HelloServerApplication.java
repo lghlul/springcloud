@@ -1,4 +1,4 @@
-package com.lu.helloserver;
+package com.lu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @EnableEurekaClient
-@ComponentScan(basePackages = {"com.lu"})
 @SpringBootApplication
 public class HelloServerApplication {
 	@Bean

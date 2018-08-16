@@ -1,15 +1,13 @@
-package com.lu.controller;
+package com.lu.feignconsumer.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.logging.Logger;
+import java.util.Random;
 
 /**
  * @CLassName HelloController
@@ -26,8 +24,7 @@ public class HelloController {
     RestTemplate restTemplate;
 
     @RequestMapping(value="/hello",method=RequestMethod.GET)
-    public String hello(){
-        logger.info("hello start...");
+    public String hello() throws Exception{
         return "Hello World";
     }
     @RequestMapping(value="/helloWorld",method=RequestMethod.GET)
